@@ -177,23 +177,6 @@ void *read_block(void *args) {
 
 }
 
-/*void read_threads_init(void) {
-
-    size_t threads_per_file = READ_THREADS_COUNT / FILE_COUNT;
-    size_t size = FILE_SIZE / (threads_per_file);
-
-    for (size_t i = 0; i < READ_THREADS_COUNT; i++){
-        size_t file_num = i / (threads_per_file);
-        off_t offset = (i % threads_per_file) * size;
-        
-        struct read_thread_args args = {offset, size, i, file_num};
-        pthread_create(&read_threads[i], NULL, read_block, &args);
-        while (!thread_initialized);
-        fprintf(stderr, "%3lu. Created read thread for file %lu, offset %ld, size %lu\n", i, file_num, offset, size);
-        
-    }
-}*/
-
 void read_threads_init(void) {
     size_t i, j;
 
