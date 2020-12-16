@@ -134,7 +134,7 @@ void close_threads(void) {
     size_t i;
     thread_terminate = 1;
     for (i = 0; i < WRITE_THREADS_COUNT; i++) pthread_join(write_threads[i], NULL);
-    // for (i = 0; i < READ_THREADS_COUNT; i++) pthread_join(read_threads[i], NULL);
+    for (i = 0; i < READ_THREADS_COUNT; i++) pthread_join(read_threads[i], NULL);
     for (i = 0; i < FILE_COUNT; i++)  {
         close(tmp_fd[i]);
     }
@@ -215,7 +215,7 @@ int main(){
     write_threads_init(p);
     read_threads_init();
 
-    while (getchar() != '\n'); /* After memory filling (need to wait a little) */
+    while (getchar() != '\n');
     close_threads();
 
     munmap(p, MEMORY_SIZE);
